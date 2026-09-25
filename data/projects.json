@@ -1,0 +1,41 @@
+{
+  "projects": [
+    {
+      "slug": "example-alpha",
+      "title": "Example Alpha",
+      "summary": "Placeholder project. Replace with a real entry.",
+      "date": "2026-09-01T00:00:00Z",
+      "link": "https://alpha.hatchetlabs.com",
+      "status": "beta",
+      "tags": [
+        "tools"
+      ],
+      "featured": true,
+      "body": "This is placeholder content showing the shape of a project entry. The body is\nregular Markdown: describe what the project does, who it's for, and what's\ncoming next."
+    },
+    {
+      "slug": "example-bravo",
+      "title": "Example Bravo",
+      "summary": "Another placeholder: an early experiment.",
+      "date": "2026-08-15T00:00:00Z",
+      "link": "https://bravo.hatchetlabs.com",
+      "status": "alpha",
+      "tags": [
+        "experiments"
+      ],
+      "featured": true,
+      "body": "Placeholder content. Early and rough around the edges."
+    },
+    {
+      "slug": "example-charlie",
+      "title": "Example Charlie",
+      "summary": "A retired placeholder, to show how archived projects render.",
+      "date": "2026-05-10T00:00:00Z",
+      "status": "archived",
+      "tags": [
+        "experiments"
+      ],
+      "body": "Placeholder content. Archived projects can omit `link`; the card then points\nto this page only."
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{{ define "main" }}
+<article class="prose">
+  <p class="crumb"><a href="{{ .Parent.RelPermalink }}">← {{ .Parent.Title }}</a></p>
+  <h1>{{ .Title }} {{ partial "status.html" . }}</h1>
+  {{ with .Params.summary }}<p class="lede">{{ . }}</p>{{ end }}
+  <p class="actions">
+    {{ with .Params.link }}<a class="button" href="{{ . }}">Try it ↗</a>{{ end }}
+    {{ with .Params.repo }}<a class="button ghost" href="{{ . }}">Source</a>{{ end }}
+  </p>
+  {{ .Content }}
+  <p class="meta">
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2006" }}</time>
+    {{ with .GetTerms "tags" }} · {{ range $i, $t := . }}{{ if $i }}, {{ end }}<a href="{{ $t.RelPermalink }}">{{ $t.LinkTitle }}</a>{{ end }}{{ end }}
+  </p>
+</article>
+{{ end }}

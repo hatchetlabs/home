@@ -1,0 +1,22 @@
+{{/*
+  Generates one page per entry in data/projects.json.
+*/}}
+{{ range site.Data.projects.projects }}
+  {{ if or (not .slug) (not .title) (not .summary) (not .date) }}
+    {{ errorf "data/projects.json: every project needs slug, title, summary and date (got %v)" . }}
+  {{ end }}
+  {{ $.AddPage (dict
+    "path" .slug
+    "title" .title
+    "dates" (dict "date" (time.AsTime .date))
+    "params" (dict
+      "summary" .summary
+      "link" .link
+      "status" (.status | default "live")
+      "repo" .repo
+      "featured" .featured
+      "tags" .tags
+    )
+    "content" (dict "mediaType" "text/markdown" "value" (.body | default ""))
+  ) }}
+{{ end }}
