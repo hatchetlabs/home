@@ -1,0 +1,44 @@
+{{/*
+  Generates one page per entry in data/projects.json, plus one page per entry
+  in its optional "pages" list at /projects/<slug>/<page slug>/.
+  Sub-pages are left out of every listing (build.list = never); the project
+  page links to them instead.
+*/}}
+{{ range site.Data.projects.projects }}
+  {{ if or (not .slug) (not .title) (not .summary) (not .date) }}
+    {{ errorf "data/projects.json: every project needs slug, title, summary and date (got %v)" . }}
+  {{ end }}
+  {{ $p := . }}
+  {{ $date := time.AsTime .date }}
+  {{ $.AddPage (dict
+    "path" .slug
+    "title" .title
+    "dates" (dict "date" $date)
+    "params" (dict
+      "summary" .summary
+      "link" .link
+      "status" (.status | default "live")
+      "repo" .repo
+      "featured" .featured
+      "tags" .tags
+      "pages" .pages
+      "highlight" .highlight
+      "abstract" .abstract
+      "paper" .paper
+    )
+    "content" (dict "mediaType" "text/markdown" "value" (.body | default ""))
+  ) }}
+  {{ range $i, $sp := .pages }}
+    {{ if or (not .slug) (not .title) (not .body) }}
+      {{ errorf "data/projects.json: every page of %q needs slug, title and body" $p.slug }}
+    {{ end }}
+    {{ $.AddPage (dict
+      "path" (printf "%s/%s" $p.slug .slug)
+      "title" .title
+      "dates" (dict "date" $date)
+      "build" (dict "list" "never")
+      "params" (dict "project" $p.slug "index" $i)
+      "content" (dict "mediaType" "text/markdown" "value" .body)
+    ) }}
+  {{ end }}
+{{ end }}

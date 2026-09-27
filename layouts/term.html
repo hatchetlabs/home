@@ -1,0 +1,6 @@
+{{ define "main" }}
+<header class="page-head"><h1>Tagged “{{ .Title }}”</h1></header>
+<div class="grid">
+  {{ range .Pages.ByDate.Reverse }}{{ partial "project-card.html" . }}{{ end }}
+</div>
+{{ end }}

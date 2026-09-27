@@ -1,0 +1,8 @@
+{{- with .Params.pages }}
+<nav class="parts" aria-label="Read more">
+  <h2>Read more</h2>
+  <ol>
+    {{ range . }}<li><a href="{{ $.RelPermalink }}{{ .slug }}/">{{ .title }}</a></li>{{ end }}
+  </ol>
+</nav>
+{{- end }}

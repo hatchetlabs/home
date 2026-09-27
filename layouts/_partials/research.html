@@ -1,0 +1,23 @@
+{{/* A research project: paper-style front page. Byline is always the lab. */}}
+<article class="prose research">
+  <p class="crumb"><a href="{{ .Parent.RelPermalink }}">← {{ .Parent.Title }}</a></p>
+  <p class="eyebrow">Research <span class="sep">·</span> {{ site.Title }} <span class="sep">·</span> <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2006" }}</time></p>
+  <h1>{{ .Title }}</h1>
+  {{ with .Params.highlight }}<p class="highlight">{{ . }}</p>
+  {{ else }}{{ with .Params.summary }}<p class="lede">{{ . }}</p>{{ end }}{{ end }}
+  <p class="actions">
+    {{ with .Params.paper }}<a class="button" href="{{ . }}">Paper (PDF)</a>{{ end }}
+    {{ with .Params.repo }}<a class="button ghost" href="{{ . }}">Full experiment ↗</a>{{ end }}
+    {{ with .Params.link }}<a class="button ghost" href="{{ . }}">Try it ↗</a>{{ end }}
+  </p>
+  {{ with .Params.abstract }}
+  <section class="abstract" aria-labelledby="abstract">
+    <h2 id="abstract">Abstract</h2>
+    {{ $.RenderString (dict "display" "block") . }}
+  </section>
+  {{ end }}
+  {{ .Content }}
+  {{ partial "parts.html" . }}
+  {{ partial "cite.html" . }}
+  {{ partial "meta-line.html" . }}
+</article>

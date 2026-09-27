@@ -1,0 +1,14 @@
+<article class="card status-{{ .Params.status | default "live" }}">
+  <header>
+    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    {{ partial "status.html" . }}
+  </header>
+  {{ with .Params.highlight }}<p class="card-highlight">{{ . }}</p>
+  {{ else }}<p>{{ .Params.summary | default .Summary | plainify }}</p>{{ end }}
+  <footer>
+    {{ with .Params.link }}<a class="visit" href="{{ . }}">{{ strings.TrimPrefix "https://" . }} ↗</a>
+    {{ else }}{{ with .Params.paper }}<a class="visit" href="{{ . }}">Paper (PDF)</a>{{ end }}{{ end }}
+    {{ with .Params.pages }}<span class="tags">{{ len . }} parts</span>{{ end }}
+    {{ with .Params.tags }}<span class="tags">{{ delimit . " · " }}</span>{{ end }}
+  </footer>
+</article>

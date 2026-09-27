@@ -1,0 +1,23 @@
+{{/* One sub-page of a project: .Params.project is its slug, .Params.index its position. */}}
+{{- $proj := site.GetPage (printf "/projects/%s" .Params.project) -}}
+{{- $pages := $proj.Params.pages -}}
+{{- $i := .Params.index -}}
+{{- $n := len $pages -}}
+<article class="prose{{ if eq $proj.Params.status "research" }} research{{ end }}">
+  <p class="crumb"><a href="{{ $proj.RelPermalink }}">← {{ $proj.Title }}</a></p>
+  <p class="part">Part {{ add $i 1 }} of {{ $n }}</p>
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+  <nav class="pager" aria-label="Pages">
+    {{ if eq $i 0 }}
+      <a class="prev" href="{{ $proj.RelPermalink }}">← Overview</a>
+    {{ else }}
+      {{ with index $pages (sub $i 1) }}<a class="prev" href="{{ $proj.RelPermalink }}{{ .slug }}/">← {{ .title }}</a>{{ end }}
+    {{ end }}
+    {{ if lt (add $i 1) $n }}
+      {{ with index $pages (add $i 1) }}<a class="next" href="{{ $proj.RelPermalink }}{{ .slug }}/">{{ .title }} →</a>{{ end }}
+    {{ else }}
+      {{ with $proj.Params.repo }}<a class="next" href="{{ . }}">{{ partial "repo-label.html" $proj }}</a>{{ end }}
+    {{ end }}
+  </nav>
+</article>

@@ -1,0 +1,25 @@
+{{/* "Cite this": BibTeX built from the title, date and permalink. */}}
+{{- $key := printf "hatchetlabs%s%s" (.Date.Format "2006") (replace (path.Base .Path) "-" "") -}}
+{{- $title := replace .Title "&" "\\&" -}}
+{{- $note := "" -}}
+{{- with .Params.paper }}{{ $note = printf ",\n  note         = {Paper: \\url{%s}}" . }}{{ end -}}
+{{- $bib := printf "@misc{%s,\n  title        = {%s},\n  author       = {{Hatchet Labs}},\n  year         = {%s},\n  howpublished = {\\url{%s}}%s\n}" $key $title (.Date.Format "2006") .Permalink $note -}}
+<section class="cite" aria-labelledby="cite">
+  <h2 id="cite">Cite this</h2>
+  <div class="cite-box">
+    <pre id="bibtex"><code>{{ $bib }}</code></pre>
+    <button type="button" class="copy" data-copy="bibtex" hidden>Copy</button>
+  </div>
+</section>
+<script>
+  document.querySelectorAll("button.copy").forEach(function (b) {
+    if (!navigator.clipboard) return;
+    b.hidden = false;
+    b.addEventListener("click", function () {
+      navigator.clipboard.writeText(document.getElementById(b.dataset.copy).innerText).then(function () {
+        b.textContent = "Copied";
+        setTimeout(function () { b.textContent = "Copy"; }, 1500);
+      });
+    });
+  });
+</script>
