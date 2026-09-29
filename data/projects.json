@@ -36,39 +36,6 @@
         "experiments"
       ],
       "body": "Placeholder content. Archived projects can omit `link`; the card then points\nto this page only."
-    },
-    {
-      "slug": "example-delta",
-      "title": "Example Delta",
-      "summary": "Placeholder research post, to show how sub-pages render.",
-      "date": "2026-09-20T00:00:00Z",
-      "status": "research",
-      "tags": [
-        "research"
-      ],
-      "featured": true,
-      "repo": "https://github.com/example/example-delta",
-      "body": "A short, standalone summary of the experiment: the question, the approach in a sentence, and the headline result.\n\nRead on for the details, or stop here.",
-      "highlight": "Placeholder headline result: one striking, specific sentence goes here.",
-      "abstract": "Placeholder abstract. State the question, the approach, the key result with its number, and why it matters, in four or five sentences, the way the paper's own abstract does.",
-      "paper": "https://github.com/example/example-delta/blob/main/paper.pdf",
-      "pages": [
-        {
-          "slug": "method",
-          "title": "Method",
-          "body": "Placeholder. How the experiment was set up, what was measured, and why."
-        },
-        {
-          "slug": "results",
-          "title": "Results",
-          "body": "Placeholder. What was found, with the numbers that matter."
-        },
-        {
-          "slug": "next",
-          "title": "Limits and next steps",
-          "body": "Placeholder. What this doesn't show yet, and variations worth trying. The full experiment is linked below for anyone who wants to continue it."
-        }
-      ]
     }
   ]
 }
